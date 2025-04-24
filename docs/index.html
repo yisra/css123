@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<!-- Injection By NetFree -->
+<script src="//wfapi.internal.netfree.link/wifree/go-install-wifree" type="text/javascript" async nonce="Oqe2NQczWWHs-sDL_1NHlg" ></script>
+
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ששה סדרי משנה</title>
+    <style>
+        /* סגנון כללי */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f0e6;
+            color: #333333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        header::after {
+            content: "";
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M60,20 C70,15 80,15 90,30 C95,40 95,50 90,60 C85,70 75,75 65,70 C60,65 60,60 50,60 C40,60 40,65 35,70 C25,75 15,70 10,60 C5,50 5,40 10,30 C20,15 30,15 40,20 C45,25 50,30 50,30 C50,30 55,25 60,20 Z' fill='none' stroke='%23333' stroke-width='2'/%3E%3Ccircle cx='30' cy='45' r='5' fill='%23333'/%3E%3Ccircle cx='70' cy='45' r='5' fill='%23333'/%3E%3Cpath d='M40,60 Q50,70 60,60' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M20,20 L30,30 M80,20 L70,30' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/svg%3E");
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #5d5d5d;
+            margin: 30px 0 20px;
+            border-bottom: 2px solid #8b795e;
+            padding-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* סגנון הקישורים לסדרי המשנה */
+        .sedarim-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .seder-link {
+            display: block;
+            width: 200px;
+            height: 200px;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .seder-link:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .seder-link:hover::after {
+            opacity: 1;
+        }
+        
+        .seder-link::after {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* צבעים ייחודיים לכל סדר */
+        #zeraim { background-color: #7bae37; }
+        #moed { background-color: #e2725b; }
+        #nashim { background-color: #8a6fdf; }
+        #nezikin { background-color: #d8995c; }
+        #kodashim { background-color: #c93756; }
+        #taharot { background-color: #3ca1db; }
+        
+        /* סגנון המסכתות */
+        .masechet-container {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .masechet-link {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            color: #4a4a4a;
+            text-decoration: none;
+            background-color: #f1e7d0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid #ccc;
+        }
+        
+        .masechet-link:hover {
+            background-color: #e6d5ad;
+            transform: scale(1.05);
+        }
+        
+        /* סגנון דף המסכת */
+        .masechet-page {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4a4a4a;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #333333;
+        }
+        
+        /* הנפשה עבור הלינקים */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .seder-link {
+            animation: pulse 2s infinite;
+            animation-play-state: paused;
+        }
+        
+        .seder-link:hover {
+            animation-play-state: running;
+        }
+        
+        /* סגנון הסיכום */
+        .summary {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ששה סדרי משנה</h1>
+            <p>אתר לימוד משניות עם גישה מהירה לכל המסכתות</p>
+        </header>
+        
+        <section id="main-section">
+            <h2>בחר סדר משנה</h2>
+            <div class="sedarim-container">
+                <a href="#zeraim-section" class="seder-link" id="zeraim" onclick="showMasechet('zeraim')">זרעים</a>
+                <a href="#moed-section" class="seder-link" id="moed" onclick="showMasechet('moed')">מועד</a>
+                <a href="#nashim-section" class="seder-link" id="nashim" onclick="showMasechet('nashim')">נשים</a>
+                <a href="#nezikin-section" class="seder-link" id="nezikin" onclick="showMasechet('nezikin')">נזיקין</a>
+                <a href="#kodashim-section" class="seder-link" id="kodashim" onclick="showMasechet('kodashim')">קדשים</a>
+                <a href="#taharot-section" class="seder-link" id="taharot" onclick="showMasechet('taharot')">טהרות</a>
+            </div>
+            
+            <!-- סדר זרעים -->
+            <div id="zeraim-section" class="masechet-section">
+                <h2>סדר זרעים</h2>
+                <div class="masechet-container" id="zeraim-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ברכות')">ברכות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('פאה')">פאה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('דמאי')">דמאי</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('כלאים')">כלאים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('שביעית')">שביעית</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('תרומות')">תרומות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מעשרות')">מעשרות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מעשר שני')">מעשר שני</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('חלה')">חלה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ערלה')">ערלה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ביכורים')">ביכורים</a>
+                </div>
+            </div>
+            
+            <!-- סדר מועד -->
+            <div id="moed-section" class="masechet-section">
+                <h2>סדר מועד</h2>
+                <div class="masechet-container" id="moed-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('שבת')">שבת</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('עירובין')">עירובין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('פסחים')">פסחים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('שקלים')">שקלים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('יומא')">יומא</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('סוכה')">סוכה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ביצה')">ביצה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ראש השנה')">ראש השנה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('תענית')">תענית</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מגילה')">מגילה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מועד קטן')">מועד קטן</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('חגיגה')">חגיגה</a>
+                </div>
+            </div>
+            
+            <!-- סדר נשים -->
+            <div id="nashim-section" class="masechet-section">
+                <h2>סדר נשים</h2>
+                <div class="masechet-container" id="nashim-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('יבמות')">יבמות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('כתובות')">כתובות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('נדרים')">נדרים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('נזיר')">נזיר</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('סוטה')">סוטה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('גיטין')">גיטין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('קידושין')">קידושין</a>
+                </div>
+            </div>
+            
+            <!-- סדר נזיקין -->
+            <div id="nezikin-section" class="masechet-section">
+                <h2>סדר נזיקין</h2>
+                <div class="masechet-container" id="nezikin-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('בבא קמא')">בבא קמא</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('בבא מציעא')">בבא מציעא</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('בבא בתרא')">בבא בתרא</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('סנהדרין')">סנהדרין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מכות')">מכות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('שבועות')">שבועות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('עדויות')">עדויות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('עבודה זרה')">עבודה זרה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('אבות')">אבות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('הוריות')">הוריות</a>
+                </div>
+            </div>
+            
+            <!-- סדר קדשים -->
+            <div id="kodashim-section" class="masechet-section">
+                <h2>סדר קדשים</h2>
+                <div class="masechet-container" id="kodashim-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('זבחים')">זבחים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מנחות')">מנחות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('חולין')">חולין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('בכורות')">בכורות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ערכין')">ערכין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('תמורה')">תמורה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('כריתות')">כריתות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מעילה')">מעילה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('תמיד')">תמיד</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מידות')">מידות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('קינים')">קינים</a>
+                </div>
+            </div>
+            
+            <!-- סדר טהרות -->
+            <div id="taharot-section" class="masechet-section">
+                <h2>סדר טהרות</h2>
+                <div class="masechet-container" id="taharot-masechet">
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('כלים')">כלים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('אוהלות')">אוהלות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('נגעים')">נגעים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('פרה')">פרה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('טהרות')">טהרות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מקוואות')">מקוואות</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('נידה')">נידה</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('מכשירין')">מכשירין</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('זבים')">זבים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('טבול יום')">טבול יום</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('ידים')">ידים</a>
+                    <a href="#" class="masechet-link" onclick="showMasechetPage('עוקצים')">עוקצים</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- תצוגת מסכת -->
+        <section class="masechet-page" id="masechet-page">
+            <h2 id="masechet-title">שם המסכת</h2>
+            <div id="masechet-content" class="masechet-text">
+                <!-- כאן יוצג תוכן המסכת -->
+                <p>כאן יופיע תוכן המסכת שנבחרה...</p>
+            </div>
+            <a href="#" class="back-button" onclick="backToHome()">חזרה לעמוד הראשי</a>
+        </section>
+        
+        <div class="summary">
+            <p>באתר זה תוכלו למצוא את כל ששה סדרי משנה: זרעים, מועד, נשים, נזיקין, קדשים וטהרות</p>
+            <p>בחרו בסדר, ואז במסכת הרצויה, כדי להתחיל בלימוד</p>
+        </div>
+        
+        <footer>
+            <p>© כל הזכויות שמורות - אתר ששה סדרי משנה</p>
+        </footer>
+    </div>
+    
+    <script>
+        // הצגת המסכתות בסדר שנבחר
+        function showMasechet(seder) {
+            // הסתרת כל המסכתות
+            const masechetContainers = document.querySelectorAll('.masechet-container');
+            masechetContainers.forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            // הצגת המסכתות של הסדר שנבחר
+            const selectedMasechet = document.getElementById(seder + '-masechet');
+            selectedMasechet.style.display = 'flex';
+            
+            // גלילה למקום הנכון
+            const sederSection = document.getElementById(seder + '-section');
+            sederSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // הצגת דף המסכת
+        function showMasechetPage(masechetName) {
+            // הסתרת העמוד הראשי
+            document.getElementById('main-section').style.display = 'none';
+            const masechetSections = document.querySelectorAll('.masechet-section');
+            masechetSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // הצגת דף המסכת
+            const masechetPage = document.getElementById('masechet-page');
+            masechetPage.style.display = 'block';
+            
+            // עדכון כותרת המסכת
+            document.getElementById('masechet-title').textContent = `מסכת ${masechetName}`;
+            
+            // טעינת התוכן בהתאם למסכת שנבחרה
+            const masechetContent = document.getElementById('masechet-content');
+            
+            // מאגר משניות - כאן מוסיפים את הטקסט של המשניות
+            const mishnayotText = {
+                'ברכות': `<h3>מסכת ברכות - פרק א</h3>
+                <p><strong>משנה א:</strong> מאימתי קורין את שמע בערבית? משעה שהכהנים נכנסים לאכול בתרומתן, עד סוף האשמורה הראשונה, דברי רבי אליעזר. וחכמים אומרים: עד חצות. רבן גמליאל אומר: עד שיעלה עמוד השחר.</p>
+                <p><strong>משנה ב:</strong> מעשה ובאו בניו מבית המשתה, אמרו לו: לא קרינו את שמע. אמר להם: אם לא עלה עמוד השחר, חייבין אתם לקרות.</p>
+                <p><strong>משנה ג:</strong> לא זו בלבד אמרו, אלא כל מה שאמרו חכמים עד חצות, מצותן עד שיעלה עמוד השחר...</p>
+                <h3>פרק ב</h3>
+                <p><strong>משנה א:</strong> היה קורא בתורה, והגיע זמן המקרא - אם כוון לבו, יצא. ואם לאו, לא יצא...</p>`,
+                
+                'פאה': `<h3>מסכת פאה - פרק א</h3>
+                <p><strong>משנה א:</strong> אלו דברים שאין להם שיעור: הפאה, והבכורים, והראיון, וגמילות חסדים, ותלמוד תורה. אלו דברים שאדם אוכל פירותיהן בעולם הזה, והקרן קיימת לו לעולם הבא: כיבוד אב ואם, וגמילות חסדים, והבאת שלום בין אדם לחברו, ותלמוד תורה כנגד כולם.</p>
+                <p><strong>משנה ב:</strong> אין פוחתין לפאה מששים. אף על פי שאמרו אין לפאה שיעור, הכל לפי גודל השדה, ולפי רוב העניים, ולפי רוב הענוה...</p>`,
+                
+                'שבת': `<h3>מסכת שבת - פרק א</h3>
+                <p><strong>משנה א:</strong> יציאות השבת שתים שהן ארבע בפנים, ושתים שהן ארבע בחוץ. כיצד? העני עומד בחוץ ובעל הבית בפנים - פשט העני את ידו לפנים ונתן לתוך ידו של בעל הבית, או שנטל מתוכה והוציא, העני חייב ובעל הבית פטור. פשט בעל הבית את ידו לחוץ ונתן לתוך ידו של עני, או שנטל מתוכה והכניס, בעל הבית חייב והעני פטור...</p>
+                <p><strong>משנה ב:</strong> לא ישב אדם לפני הספר סמוך למנחה עד שיתפלל. לא יכנס אדם למרחץ ולא לבורסקי ולא לאכול ולא לדין. ואם התחילו, אין מפסיקין...</p>`
+                
+                // הוסף עוד מסכתות לפי הצורך
+            };
+            
+            // בדיקה אם קיים תוכן למסכת שנבחרה
+            if (mishnayotText[masechetName]) {
+                masechetContent.innerHTML = mishnayotText[masechetName];
+            } else {
+                masechetContent.innerHTML = `<p>תוכן מסכת ${masechetName} יתווסף בקרוב...</p>`;
+            }
+            
+            // גלילה למעלה
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // חזרה לעמוד הראשי
+        function backToHome() {
+            // הסתרת דף המסכת
+            document.getElementById('masechet-page').style.display = 'none';
+            
+            // הצגת העמוד הראשי
+            document.getElementById('main-section').style.display = 'block';
+            const masechetSections = document.querySelectorAll('.masechet-section');
+            masechetSections.forEach(section => {
+                section.style.display = 'block';
+            });
+            
+            // הסתרת כל המסכתות
+            const masechetContainers = document.querySelectorAll('.masechet-container');
+            masechetContainers.forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            // גלילה למעלה
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
